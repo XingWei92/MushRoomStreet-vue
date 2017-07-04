@@ -1,6 +1,7 @@
 <template lang="html">
+  <!-- 大牌满减 -->
   <div class="mod_row">
-      <div class="keys_item" v-for="item in Lmsg">
+      <router-link to="/lazy" class="keys_item" v-for="(item,index) in Lmsg" :key="item.id">
         <div class="text_box">
           <p class="text_title">{{item.title}}</p>
           <p class="text_des">{{item.description}}</p>
@@ -10,17 +11,30 @@
             </div>
           </div>
         </div>
-      </div>
+      </router-link>
   </div>
 </template>
 
 <script>
+import bus from '../../assets/js/bus.js'
 export default {
-  props:['Lmsg']
+  // props:['Lmsg'],
+  data(){
+    return {
+      Lmsg:[],
+      LmsgPath:[]
+    }
+  },
+  created(){
+    bus.$on('lazyListData',msg=>{
+      this.Lmsg=msg
+      //console.log(this.Lmsg);
+    })
+  }
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
 .mod_row{
   width:100%;
   margin:0 auto;
@@ -33,7 +47,7 @@ export default {
 }
 .keys_item{
   float:left;
-  width:30%;
+  width:33.33%;
   margin-bottom:.2rem;
   position:relative;
   box-sizing: border-box;

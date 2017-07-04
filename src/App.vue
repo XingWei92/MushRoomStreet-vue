@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <HeaderVue></HeaderVue>
-    <router-view></router-view>
+    <HeaderVue class=""></HeaderVue>
+    <router-view class=""></router-view>
     <NavVue></NavVue>
   </div>
 </template>
@@ -19,6 +19,6 @@ export default {
 }
 </script>
 
-<style>
+<style lang='css' scoped>
 
 </style>

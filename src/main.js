@@ -9,7 +9,11 @@ Vue.use(VueResource)
 import axios from 'axios'
 //将插件绑定到Vue构造函数的原型中
 Vue.prototype.axios=axios;
-
+// 导入vuex模块
+import Vuex from 'vuex'
+ // 安装模块
+Vue.use(Vuex);
+import store from './assets/js/vuex.js'
 
 Vue.config.productionTip = false
 
@@ -19,5 +23,6 @@ new Vue({
   router,
   template: '<App/>',
   components: { App },
-  router
+  router,
+  store
 })

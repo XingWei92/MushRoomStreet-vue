@@ -7,7 +7,7 @@
 		  				<p class="order_icon">
 		  					<img src="https://s10.mogucdn.com/p1/160727/upload_ie4wenzume4tsmjqmezdambqgqyde_56x56.png" alt="">
 		  				</p>
-		  				<p class="order_title">我的订单</p>
+		  				<router-link to="/order_list" class="order_title">我的订单</router-link>
 		  			</div>
 		  		</a>
 		  		<!-- 订单下半部分 -->
@@ -27,7 +27,7 @@
 		props:["msg2"]
 	}
 </script>
-<style lang="css">
+<style lang="css" scoped>
 	/* 订单部分 */
 .mine_body>.order_info{
 	width:100%;

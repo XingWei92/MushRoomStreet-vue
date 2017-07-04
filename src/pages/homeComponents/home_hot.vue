@@ -1,15 +1,15 @@
 <template lang="html">
   <div class="hot_market">
      <div class="hot_market_wrap">
-       <div class="hot_title">热门市场</div>
+       <div class="hot_title">{{hotMsg.title}}</div>
        <div class="hot_show">
          <div class="hot_show_wrap">
-           <div class="hot_show_list" v-for="hot in hotMsg">
+           <router-link to="" class="hot_show_list" v-for="hot in hotMsg.list" :key="hot.id">
              <div class="hot_show_img">
                <img :src="hot.image" alt="">
              </div>
              <div class="hot_list_text">{{hot.title}}</div>
-           </div>
+           </router-link>
          </div>
        </div>
      </div>
@@ -22,7 +22,7 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
   .hot_market{
 
   }
@@ -47,7 +47,42 @@ export default {
   .hot_show{
 
   }
-  .hot_show_wrap{
 
+  .hot_show_wrap{
+   width:100%;
+   padding:0 0 0.4rem;
+   color:#666;
+  }
+  .hot_show_wrap:after{
+    content:"";
+    display:block;
+    height:0;
+    clear:both;
+  }
+  .hot_show_list{
+    float:left;
+    width:25%;
+    overflow: hidden;
+    margin-bottom: .4rem;
+  }
+  .hot_show_img{
+    margin:0 auto;
+    height:2.4rem;
+    width:2.4rem;
+    overflow: hidden;
+  }
+  .hot_show_img img{
+    width:100%;
+    vertical-align: middle;
+    cursor: auto;
+  }
+  .hot_list_text{
+    font-size:.52rem;
+    height:.74rem;
+    line-height: .74rem;
+    color:#333;
+    text-align: center;
+    width:90%;
+    margin:.2rem auto 0;
   }
 </style>

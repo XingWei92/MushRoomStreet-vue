@@ -1,4 +1,5 @@
 <template lang="html">
+  <!-- 九点快抢 -->
   <div class="mod_time_row">
     <div class="mod_time_wrap">
       <div class="time">
@@ -7,9 +8,9 @@
             <div class="time_spear_text_p">{{SalesMsg.title}}<span style="color:rgb(0,0,0);"></span>{{SalesMsg.viceTitle}}</div>
           </div>
           <div class="counting">
-            <span>00</span>:
-            <span>25</span>:
-            <span>36</span>
+            <span>{{hours}}</span>:
+            <span>{{minuts}}</span>:
+            <span>{{seconds}}</span>
           </div>
         </div>
         <div class="more">
@@ -18,24 +19,108 @@
       </div>
       <div class="show_goods">
         <div class="goods_wrap">
-          <div class="goods_item"  v-for="good in SalesMsg.list">
+          <router-link to="" class="goods_item"  v-for="good in SalesMsg.list" :key="good.id">
             <div class="goods_img">
               <img :src="good.img" alt="">
             </div>
             <p class="item_title">{{good.title}}</p>
             <p class="item_price">￥{{good.salePrice}}<span><del>￥{{good.price}}</del></span></p>
-          </div>
+          </router-link>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+
+import bus from '../../assets/js/bus.js'
 export default {
-  props:['SalesMsg']
+  // props:['SalesMsg'],
+  data(){
+    return {
+      hours : "",
+      minuts : "",
+      seconds: "",
+      msgData :"",
+      SalesMsg:[]
+    }
+  },
+  created(){
+       var that=this;
+       bus.$on('salesData',date=>{
+          //console.log(date);
+          this.SalesMsg=date;
+          this.msgData=date.time;
+          // console.log(this.msgData);
+          $(function(){
+            //console.log(that.SalesMsg);
+            var hour=Math.floor(that.SalesMsg.time/3600);
+            var minut=Math.floor((that.SalesMsg.time%3600)/60
+          );
+            var second=Math.floor((that.SalesMsg.time%3600)%60);
+
+            var no;
+            if(hour<10){
+              that.hours='0'+hour
+            }else{
+              that.hours=hour
+            }
+            if(minut<10){
+              that.minuts='0'+minut
+            }else{
+              that.minuts=minut
+            }
+            if(second<10){
+              that.seconds='0'+minut
+            }else{
+              that.seconds=minut
+            }
+
+            //console.log(that.hour);
+            no=setInterval(function(){
+              second--;
+              if(second<10&&second>=0){
+                that.seconds='0'+second
+              }else if(second<0){
+                if(minut!=0||hour!=0){
+                  second=59;
+                  minut-=1;
+                  if(minut<10&&minut>=0){
+                    that.minuts='0'+minut
+                  }else if(minut<0){
+                    if(hour>0){
+                        minut=59;
+                        hour-=1;
+                        that.minuts=minut;
+                        if(hour<10){
+                          that.hours='0'+hour
+                        }else{
+                          that.hours=hour
+                        }
+                      }else{
+                        hour=0;
+                        minut=0;
+                        second=0;
+                      }
+                  }else{
+                    that.minuts=minut
+                  }
+                }else{
+                  hour=0;
+                  minut=0;
+                  second=0;
+                }
+              }else{
+                that.seconds=second
+              }
+            },1000)
+          })
+       })
+  }
 }
+
 </script>
-<style lang="css">
+<style lang="css" scoped>
 .mod_time_row{
   background-color:#fff;
   margin:0 auto;
@@ -122,8 +207,7 @@ export default {
   box-sizing: border-box;
 }
 
-Pseudo:serollbar element
-.goods_wrap:after{
+.goods_wrap::-webkit-scrollbar{
   display: none;
   width: 0 !important;
   opacity: 0;

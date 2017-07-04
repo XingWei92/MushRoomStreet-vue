@@ -10,13 +10,13 @@
 			<Mine_collection :msg3="collectData"></Mine_collection>
 			<!-- 退出登录 -->
 			<div class="out_content">
-				<a href="">退出登录</a>
+				<router-link to="/log_in">退出登录</router-link>
 			</div>
-		</div> 
-		
-		
+		</div>
+
+
 	</div>
-  
+
 </template>
 
 <script>
@@ -44,7 +44,9 @@ export default {
 			this.orderData = data.body.data.orderInfo.orderStatus;
 			this.collectData = data.body.data.items;
 			console.log(data.body.data.items);
-		})
+		});
+		$(window).unbind('scroll');
+		this.$store.commit('changeHeader',false);
 	}
 }
 </script>

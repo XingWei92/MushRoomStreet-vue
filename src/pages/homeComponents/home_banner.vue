@@ -1,26 +1,23 @@
 <template lang="html">
-<<<<<<< HEAD
-
-=======
-  <!-- <div class="swiper-container">
+   <div class="swiper-container">
     <div class="swiper-wrapper">
-      <div class="swiper-slide" ng-repeat="item in a"><img ng-src="{{item.image_800}}" /></div>
-    </div>
-    <!-- 如果需要分页器 -->
-    <!-- <div class="swiper-pagination"></div>
-  </div> -->
->>>>>>> 5712223bbcf4890f8054f512e4d9b6d2290b3963
+      <div class="swiper-slide" v-for="item in bannerMsg" key='key'>
+        <img :src="item.image_800"/>
+      </div>
+  </div>
+  <!-- 如果需要分页器 -->
+  <div class="swiper-pagination" id="swiper-pagination"></div>
+</div>
 </template>
 
 <script>
 export default {
-<<<<<<< HEAD
-=======
-  props:['a'],
+  props:['bannerMsg'],
   mounted(){
     var mySwiper = new Swiper ('.swiper-container', {
        direction: 'horizontal',
        loop: true,
+       loopAdditionalSlides : 1,
        autoplay:3000,
        // 如果需要分页器
        pagination: '.swiper-pagination',
@@ -30,9 +27,23 @@ export default {
        autoplayDisableOnInteraction:false
      });
    }
->>>>>>> 5712223bbcf4890f8054f512e4d9b6d2290b3963
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
+ #swiper-pagination{
+   bottom:30px;
+   left:1%;
+   padding: 6px 2px;
+   height: 18px;
+   border-radius: 10px;
+   z-index: 99;
+   width: auto;
+ }
+ #swiper-pagination .swiper-pagination-bullet{
+   width: 12px;
+   height: 12px;
+   background: #fff;
+ }
+
 </style>

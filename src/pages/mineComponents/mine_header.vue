@@ -10,19 +10,19 @@
 		  		<!-- 用户名 -->
 		  		<p v-text="msg1.userName"></p>
 		  		<!-- 收货地址 -->
-		  		<a href="">
+		  		<router-link to="/mine_address">
 		  			<p>我的收货地址</p>
-		  		</a>
+		  		</router-link>
 		  	</div>
 		</div>
 </template>
 <script>
 	export default{
-		props:["msg1"]	
+		props:["msg1"]
 	}
-	
+
 </script>
-<style lang="css">
+<style lang="css" scoped>
 /* mine页面头部 */
 .mine_head{
 	width:100%;
@@ -62,7 +62,7 @@
 .mine_head>.head_userinfo>a{
 	display:block;
 	text-decoration:none;
-	
+
 }
 .mine_head>.head_userinfo>a>p{
 	margin:0;

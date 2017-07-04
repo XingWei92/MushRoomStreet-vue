@@ -19,7 +19,7 @@
 		props:["msg3"]
 	}
 </script>
-<style lang="css">
+<style lang="css" scoped>
 .mine_collection{
 	width:100%;
 	margin-top:.4rem;
@@ -52,7 +52,7 @@
 }
 .mine_collection>.collect_list>div>.item_main{
 	border-bottom:2px solid #e5e5e5;
-	width:12.6rem;
+	width:12rem;
 	height:2rem;
 	line-height:2rem;
 	font-size:.64rem;

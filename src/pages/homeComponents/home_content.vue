@@ -3,58 +3,32 @@
     <div class="sales_promotion">
       <p class="sales_text">超实惠-促销直达</p>
       <div class="sales_goods_shows">
-          <div :class="'women_dress'+index" v-for="(item,index) in msg" class="women_dress">
-            <div :class="'sales_goods_text'+index" class="sales_goods_text">
-              <div class="momen_buy" :class="'momen_buy'+index">{{item.title}}</div>
-              <div class="momen_discount" :class="'momen_discount'+index">{{item.viceTitle}}</div>
-            </div>
-            <div class="sales_goods_img " :class="'sales_goods_img'+index">
-              <img :src="item.image" alt="">
-            </div>
+          <div :class="'women_dress'+index" v-for="(item,index) in msg" class="women_dress" :key="item.id">
+            <router-link :to="'/content'+index" tag="div">
+              <div :class="'sales_goods_text'+index" class="sales_goods_text">
+                <div class="momen_buy" :class="'momen_buy'+index">{{item.title}}</div>
+                <div class="momen_discount" :class="'momen_discount'+index">{{item.viceTitle.substring(1).replace("}","")}}</div>
+              </div>
+              <div class="sales_goods_img " :class="'sales_goods_img'+index">
+                <img :src="item.image" alt="">
+              </div>
+            </router-link>
           </div>
+
       </div>
     </div>
+
   </div>
+
 </template>
 
 <script>
 export default {
-<<<<<<< HEAD
   props:['msg']
-
-
-=======
-  props:['msg'],
-  data(){
-    return {
-      lazyListData:[],
-       rushData:[],
-       timeData:{},
-      salesData:[],
-      listData:[]
-    }
-  },
-  created(){
-    console.log(this.msg);
-  //   this.$http.jsonp('http://mce.mogucdn.com/jsonp/multiget/3?pids=51822%2C51827%2C41119%2C51833%2C51836%2C4604').then(response=>{
-  //     //console.log(response.data.data[51827].list);
-  //     this.lazyListData=response.data.data[51827].list;
-  //     this.rushData=response.data.data[41119].list[0].list;
-  //     //console.log(response.data.data[41119].list[0]);
-  //     this.timeData=response.data.data[41119].list[0]
-  //     //console.log(this.timeData);
-  //     //console.log(response.data.data[51833].list);
-  //     this.salesData=response.data.data[51833].list;
-  //     //console.log(this.rushData);
-  //     console.log(response.data.data[51836].list);
-  //     this.listData=response.data.data[51836].list
-  //   })
-  }
->>>>>>> 5712223bbcf4890f8054f512e4d9b6d2290b3963
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
 .home_content{
   background-color:#f6f6f6;
 }

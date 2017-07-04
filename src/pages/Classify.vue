@@ -1,8 +1,9 @@
 <template lang="html">
   <div id="classify">
       <Classify-list></Classify-list>
-
-      <router-view></router-view>
+      <div class="">
+        <router-view></router-view>
+      </div>
   </div>
 </template>
 
@@ -14,9 +15,19 @@ export default {
   components : {
       ClassifyList,
       ClassifyContent
+  },
+  mounted () {
+    //  $(window).unbind('scroll');
+  },
+  created(){
+    this.$store.commit('changeHeader',true);
+    this.$store.commit('changeNav',true);
   }
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
+#classify {
+     width: 100%;
+}
 </style>
